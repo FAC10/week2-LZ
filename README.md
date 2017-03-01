@@ -10,3 +10,11 @@ Stopwatch project for week 2.
     * add changing colours to timers to as they go from unset-running-finished
     * add responsiveness
     * add pulsing animation to timer at each minute interval
+
+## Goals
+* Day one
+  * Have one functioning clock in JS (with a good suite of tests from TDD :wink:) showing milliseconds, seconds and minutes
+* Day two
+  * Get the full 20/20/20 timer working
+
+## User stories
