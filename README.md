@@ -18,3 +18,7 @@ Stopwatch project for week 2.
   * Get the full 20/20/20 timer working
 
 ## User stories
+
+
+## Progress
+* Took us 1 hour to decide on and write first tests
