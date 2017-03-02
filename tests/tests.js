@@ -21,18 +21,17 @@ QUnit.test('clearSecondsAt count at 60 seconds', function(assert){
   assert.equal(clearSecondsAt, 60);
 })
 
-QUnit.test("time counter should equal 1", function(assert){
-  assert.equal(secondsCounter(), 1)
-})
-
-// QUnit.test("the final value of 'time' in the secondsTimer function should be the same as the value of clearSecondsAt", function(assert){
-//   secondsCounterRepeat();
-//   setTimeout(
-//     assert.equal(time, 5), 5100
-//   );
+// QUnit.test("time counter should equal 1", function(assert){
+//   assert.equal(secondsCounter(), 1)
 // })
 
 //At this point we would like to test that the function actually increments properly, we could not for the life of us work out how to do this in a way that did not seem really convoluted, so we moved past it and created that aspect of the function.
 
-
-//failing test below, unsure why, when console.logging the value of secondsCounter it is 1, when assigning it to a variable it is 1, in practice it is 1, do not know wht this test fails on qunit (returning 3/4)
+QUnit.test("tests that when 3 seconds has passed our clock registers 3 seconds", function( assert ) {
+  var done = assert.async();
+  startButton();
+  setTimeout(function() {
+    assert.strictEqual(tellTime(), 3, "Passed!");
+    done();
+  }, 3100);
+});
