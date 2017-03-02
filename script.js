@@ -1,9 +1,13 @@
 
+// GLOBAL VARIABLES
+
 var increment = 1000; //this is the increment between the "seconds hand" ticking (so to speak) in milliseconds
 var clearSecondsAt = 60; //this is the amount of times the secondsTimer should increment before clearing and converting to minutes
 var timeCounter = 1; //The time displayed increases by the value of timeCounter after the increment has passed
-var isClicked = false;
+var isClicked = false; // This ensures that the start button does not trigger its function multiple times if clicked repeatedly
 
+
+// RESET BUTTON
 
 function reset() {
   clearInterval(interval);
@@ -13,8 +17,8 @@ function reset() {
 }
 
 
+// SET START TIME
 
-//sets start time for seconds
 function timeAtStart(startTime) {
     if (startTime) {
         return startTime;
@@ -26,7 +30,7 @@ function timeAtStart(startTime) {
 var time = timeAtStart();
 
 
-//counts seconds beginning at startTime
+// COUNT SECONDS
 
 function secondsCounter() {
 
@@ -47,6 +51,8 @@ function secondsCounter() {
 
 var interval;
 
+
+//START BUTTON
 //Invokes secondsCounter to repeat after every increment (i.e. second) until the interval is cleared (after 60 secs)
 
 function secondsCounterRepeat() {
@@ -56,10 +62,10 @@ function secondsCounterRepeat() {
     isClicked = true;
 };
 
+
+// STOP BUTTON
+
 function stopButton(){
   clearInterval(interval);
   isClicked = false;
 }
-
-
-//secondsCounterRepeat();
