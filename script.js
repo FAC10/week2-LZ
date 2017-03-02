@@ -4,6 +4,14 @@ var clearSecondsAt = 60; //this is the amount of times the secondsTimer should i
 var timeCounter = 1; //The time displayed increases by the value of timeCounter after the increment has passed
 
 
+function reset() {
+  clearInterval(interval); 
+  time = 00;
+    document.getElementById("seconds").innerHTML = '00';
+}
+
+
+
 //sets start time for seconds
 function timeAtStart(startTime) {
     if (startTime) {
@@ -43,4 +51,4 @@ function secondsCounterRepeat() {
     interval = setInterval(secondsCounter, increment);
 };
 
-secondsCounterRepeat();
+//secondsCounterRepeat();
