@@ -29,9 +29,52 @@ QUnit.test('clearSecondsAt count at 60 seconds', function(assert){
 
 QUnit.test("tests that when 3 seconds has passed our clock registers 3 seconds", function( assert ) {
   var done = assert.async();
+  reset(); //we put reset at the start of all tests as we mutate a global variable in our timer function so want to make sure that it is set back to 0 every time we test.
   startButton();
   setTimeout(function() {
     assert.strictEqual(tellTime(), 3, "Passed!");
     done();
-  }, 3100);
+  }, 3010); //we hav used 3010 for our test as setting exactly 3000 milliseconds caused problems due to slight differences in time, our timer is still accurate to 1/100 of a second
+});
+
+QUnit.test("when timer is reset after 3 seconds, then started again for another 3 seconds tellTime should return 3", function( assert ) {
+  var done = assert.async();
+  reset();
+  startButton();
+  setTimeout(function(){}, 3010)
+  reset();
+  startButton();
+  setTimeout(function() {
+    assert.strictEqual(tellTime(), 3, "Passed!");
+    done();
+  }, 3010);
+});
+
+//The test below does not work in the intended way, meant to start timer for 3 seconds, pause for one second, run for 3 seconds and then return the current time
+
+QUnit.test("when timer is run for 3 seconds, paused for 1 second and started again for 3 seconds tellTime should return 6", function( assert ) {
+  var done = assert.async();
+
+  reset();
+
+  startButton();
+
+  setTimeout(function(){
+
+    stopButton();
+
+    setTimeout(function(){
+
+      startButton();
+
+      setTimeout(function() {
+
+        assert.strictEqual(tellTime(), 6, "Passed!");
+        done();
+
+      }, 3010);
+    }, 1010)
+
+  }, 3010)
+
 });

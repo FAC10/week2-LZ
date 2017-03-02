@@ -12,7 +12,9 @@ var isClicked = false; // This ensures that the start button does not trigger it
 function reset() {
   clearInterval(interval);
   time = 00;
-  document.getElementById("seconds").innerHTML = '00';
+  if(document.getElementById("seconds")){
+    document.getElementById("seconds").innerHTML = '00';
+  };
   isClicked = false;
 }
 
@@ -47,7 +49,7 @@ function secondsCounter() {
         htmlSeconds.innerHTML = time;
       }
     }
-    console.log(time);
+    //console.log(time);
     if (time === clearSecondsAt) {
         clearInterval(interval);
     }
