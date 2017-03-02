@@ -36,13 +36,17 @@ function secondsCounter() {
 
     time += timeCounter;
 
-    if (time<10){
-      document.getElementById("seconds").innerHTML = '0' + time;
-    }
-    else {
-      document.getElementById("seconds").innerHTML = time;
-    }
+    var htmlSeconds = document.getElementById("seconds");
 
+    //this if statement is here so our tests run properly. since the "seconds" element won't exist in the qunit html it throws an error without this if statement
+    if(htmlSeconds){
+      if (time<10){
+        htmlSeconds.innerHTML = '0' + time;
+      }
+      else {
+        htmlSeconds.innerHTML = time;
+      }
+    }
     console.log(time);
     if (time === clearSecondsAt) {
         clearInterval(interval);
@@ -55,7 +59,7 @@ var interval;
 //START BUTTON
 //Invokes secondsCounter to repeat after every increment (i.e. second) until the interval is cleared (after 60 secs)
 
-function secondsCounterRepeat() {
+function startButton() {
     if(!isClicked){
       interval = setInterval(secondsCounter, increment);
     }
@@ -68,4 +72,11 @@ function secondsCounterRepeat() {
 function stopButton(){
   clearInterval(interval);
   isClicked = false;
+}
+
+
+// Create a function which returns what number of seconds we are on
+
+function tellTime(){
+  return time;
 }
