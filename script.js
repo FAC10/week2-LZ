@@ -19,7 +19,16 @@ var time = timeAtStart();
 //counts seconds beginning at startTime
 
 function secondsCounter() {
+
     time += timeCounter;
+
+    if (time<10){
+      document.getElementById("seconds").innerHTML = '0' + time;
+    }
+    else {
+      document.getElementById("seconds").innerHTML = time;
+    }
+
     console.log(time);
     if (time === clearSecondsAt) {
         clearInterval(interval);
