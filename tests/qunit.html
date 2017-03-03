@@ -9,7 +9,18 @@
 <body>
   <div id="qunit"></div>
   <div id="qunit-fixture">
-    
+
+    <section class="timebox">
+      <p class="timebox__digits">
+        <span id="minutes">00</span>
+        :
+        <span id="seconds">00</span>
+        <p>
+      <button type="button" class="timebox__start" onclick="startButton()">START</button>
+      <button type="button" class="timebox__stop" onclick="stopButton()">STOP</button>
+      <button type="button" class="timebox__reset" onclick="reset()">RESET</button>
+    </section>
+
   </div>
   <script src="https://code.jquery.com/qunit/qunit-2.1.1.js"></script>
   <script src="../script.js"></script>
