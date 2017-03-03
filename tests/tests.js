@@ -13,9 +13,6 @@ QUnit.test('increment should be set to 1 second', function(assert){
   assert.equal(increment, 1000);
 })
 
-QUnit.test("timeCounter should increase by 1 each time the function is run", function(assert){
-  assert.equal(timeCounter, 1);
-})
 
 QUnit.test('clearSecondsAt count at 60 seconds', function(assert){
   assert.equal(clearSecondsAt, 60);
@@ -71,7 +68,7 @@ QUnit.test("when timer is run for 3 seconds, paused for 1 second and started aga
 
       setTimeout(function() { //  this setTimeout waits another 3 seconds before firing its contents
 
-        assert.strictEqual(tellTime(), 6, "Passed!"); // so after another 3 seconds (a total of 7 seconds from when the time was first started on like 62, and a totla of 6 seconds of the timer actuall running) we fire our assert.strictEqual to check what the current timer is at. 
+        assert.strictEqual(tellTime(), 6, "Passed!"); // so after another 3 seconds (a total of 7 seconds from when the time was first started on like 62, and a totla of 6 seconds of the timer actuall running) we fire our assert.strictEqual to check what the current timer is at.
         done();
 
       }, 3010);
