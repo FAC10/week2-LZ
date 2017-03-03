@@ -62,6 +62,8 @@ function secondsCounter() {
 
 }
 
+// COUNT MINUTES
+
 var minutes = 0;
 
 function minutesCounter() {
@@ -76,25 +78,9 @@ function minutesCounter() {
   if (minutes === 20){
     reset();
   }
-
-
-
-
-
 }
 
-
-
-
-
-
-
-
-
-
-
 var interval;
-
 
 //START BUTTON
 //Invokes secondsCounter to repeat after every increment (i.e. second) until the interval is cleared (after 60 secs)
@@ -106,7 +92,6 @@ function startButton() {
     isClicked = true;
 };
 
-
 // STOP BUTTON
 
 function stopButton(){
@@ -114,9 +99,19 @@ function stopButton(){
   isClicked = false;
 }
 
-
 // Create a function which returns what number of seconds we are on
 
 function tellTime(){
   return time;
 }
+
+//Event Listeners for click to trigger functions
+
+var startMe = document.getElementById("timebox__start");
+  startMe.addEventListener("click", startButton);
+
+var stopMe = document.getElementById("timebox__stop");
+  stopMe.addEventListener("click", stopButton);
+
+var resetMe = document.getElementById("timebox__reset");
+  resetMe.addEventListener("click", reset);
