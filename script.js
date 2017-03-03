@@ -11,8 +11,10 @@ var isClicked = false; // This ensures that the start button does not trigger it
 
 function reset() {
   clearInterval(interval);
-  time = 00;
+  time = 0;
   document.getElementById("seconds").innerHTML = '00';
+  minutes = 0;
+  document.getElementById("minutes").innerHTML = '00';
   isClicked = false;
 }
 
@@ -37,6 +39,13 @@ function secondsCounter() {
     time += timeCounter;
 
     var htmlSeconds = document.getElementById("seconds");
+    //var htmlMinutes = document.getElementById("minutes");
+
+    if (time % clearSecondsAt === 0) {
+      //  clearInterval(interval);
+      time = 0;
+      minutesCounter();
+    }
 
     //this if statement is here so our tests run properly. since the "seconds" element won't exist in the qunit html it throws an error without this if statement
     if(htmlSeconds){
@@ -48,10 +57,36 @@ function secondsCounter() {
       }
     }
     console.log(time);
-    if (time === clearSecondsAt) {
-        clearInterval(interval);
-    }
+
 }
+
+var minutes = 0;
+
+function minutesCounter() {
+  var htmlMinutes = document.getElementById("minutes");
+  minutes++;
+  if (minutes < 10){
+    htmlMinutes.innerHTML = "0" + minutes;
+  }
+
+  else {htmlMinutes.innerHTML = minutes;}
+
+  if (minutes === 20){
+    reset();
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
 var interval;
 
