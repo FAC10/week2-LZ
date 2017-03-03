@@ -5,7 +5,9 @@ var increment = 1000; //this is the increment between the "seconds hand" ticking
 var clearSecondsAt = 60; //this is the amount of times the secondsTimer should increment before clearing and converting to minutes
 var timeCounter = 1; //The time displayed increases by the value of timeCounter after the increment has passed
 var isClicked = false; // This ensures that the start button does not trigger its function multiple times if clicked repeatedly
-
+var interval; // We declare interval as a valueless var here so that multiple functions can access it
+var time = timeAtStart(); //This is the global variable that we mutate for seconds
+var minutes = 0; // "" for minutes instead of secs
 
 // RESET BUTTON
 
@@ -19,7 +21,6 @@ function reset() {
   isClicked = false;
 }
 
-
 // SET START TIME
 
 function timeAtStart(startTime) {
@@ -29,9 +30,6 @@ function timeAtStart(startTime) {
         return 0;
     }
 }
-
-var time = timeAtStart();
-
 
 // COUNT SECONDS
 
@@ -50,6 +48,7 @@ function secondsCounter() {
 
     //this if statement is here so our tests run properly. since the "seconds" element won't exist in the qunit html it throws an error without this if statement
     if(htmlSeconds){
+
       if (time<10){
         htmlSeconds.innerHTML = '0' + time;
       }
@@ -57,14 +56,9 @@ function secondsCounter() {
         htmlSeconds.innerHTML = time;
       }
     }
-
-    console.log(time);
-
 }
 
 // COUNT MINUTES
-
-var minutes = 0;
 
 function minutesCounter() {
   var htmlMinutes = document.getElementById("minutes");
@@ -79,8 +73,6 @@ function minutesCounter() {
     reset();
   }
 }
-
-var interval;
 
 //START BUTTON
 //Invokes secondsCounter to repeat after every increment (i.e. second) until the interval is cleared (after 60 secs)
