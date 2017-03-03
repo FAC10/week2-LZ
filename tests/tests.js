@@ -73,6 +73,7 @@ QUnit.test("when timer is run for 3 seconds, paused for 1 second and started aga
         done();
 
       }, 3010);
+
     }, 1010)
 
   }, 3010)

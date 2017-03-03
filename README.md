@@ -30,4 +30,4 @@ Stopwatch project for week 2.
 
 * Day two
   * focused on refactoring the function, we have split it into 3 functions, one of them is very testable, the other two are more difficult to test (partly due to our use of global variables and qunit not resetting the global state each time it tests a function)
-  * 15 minute technical spike to see if we can find other assert methods in qunit which make our tests easier. 
+  * 15 minute technical spike to see if we can find other assert methods in qunit which make our tests easier.
