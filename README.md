@@ -17,6 +17,7 @@ Stopwatch project for week 2.
     * this was semi-succesful. We had seconds timer but got stuck on the tests needed
 * Day two
   * Get the full 20/20/20 timer working
+    * This was ambitious, on day 2, rather that focus on functionality we focused on creating meaningful tests to cover our code. So the full 20/20/20 timer did not come to fruition.
 
 ## User stories
 
@@ -31,3 +32,10 @@ Stopwatch project for week 2.
 * Day two
   * focused on refactoring the function, we have split it into 3 functions, one of them is very testable, the other two are more difficult to test (partly due to our use of global variables and qunit not resetting the global state each time it tests a function)
   * 15 minute technical spike to see if we can find other assert methods in qunit which make our tests easier.
+  * investigated assert.async() from qunit but didn't fully understand til Peter posted an example in gitter.
+  * we then added some elements to our html and modified the javascript so that it actually effected the DOM (where there would be DOM manipulation there were instead console.log statements.)
+  * made html buttons and made functions for them to trigger: Start, stop, reset.
+  * ran into a bug with start where you could run the "start" function lots of times, and they ran at the same time which massively sped up the timer.
+    * debugged code and fixed this.
+  * Used Peter's example of an async test to write some more integration-y tests for our stopwatch.
+  * worked on getting the minutes to increment along with the seconds.

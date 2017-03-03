@@ -21,33 +21,35 @@ QUnit.test('clearSecondsAt count at 60 seconds', function(assert){
   assert.equal(clearSecondsAt, 60);
 })
 
-// QUnit.test("time counter should equal 1", function(assert){
-//   assert.equal(secondsCounter(), 1)
-// })
-
-//At this point we would like to test that the function actually increments properly, we could not for the life of us work out how to do this in a way that did not seem really convoluted, so we moved past it and created that aspect of the function.
+//Integration-ish tests
 
 QUnit.test("tests that when 3 seconds has passed our clock registers 3 seconds", function( assert ) {
   var done = assert.async();
   reset(); //we put reset at the start of all tests as we mutate a global variable in our timer function so want to make sure that it is set back to 0 every time we test.
-  startButton();
-  setTimeout(function() {
+  startButton(); //here we start running the stopwatch
+  setTimeout(function() { //here we use setTimeout so the asset.strictEqual only fires once 3 seconds have passed
     assert.strictEqual(tellTime(), 3, "Passed!");
     done();
-  }, 3010); //we hav used 3010 for our test as setting exactly 3000 milliseconds caused problems due to slight differences in time, our timer is still accurate to 1/100 of a second
+  }, 3010); //we have used 3010 for our test as setting exactly 3000 milliseconds caused problems due to slight differences in time, our timer is still accurate to 1/100 of a second
 });
 
 QUnit.test("when timer is reset after 3 seconds, then started again for another 3 seconds tellTime should return 3", function( assert ) {
   var done = assert.async();
+  // in this test we use nested setTimeouts to simulate a reset after a certain amount of time
   reset();
   startButton();
-  setTimeout(function(){}, 3010)
-  reset();
-  startButton();
-  setTimeout(function() {
-    assert.strictEqual(tellTime(), 3, "Passed!");
-    done();
-  }, 3010);
+  setTimeout(function(){ //in this setTimeout we make it so that lines 43, 45, and 47 to 50 are only run after 3 seconds. This allows us to simulate starting the clock, waiting, resetting the clock, and starting it again.
+
+    reset();
+
+    startButton();
+
+    setTimeout(function() { //here we use a nested setTimeout so that after we have waited 3 seconds, reset and started again we wait another 3 seconds before qunit fires its assert.strictEqual
+      assert.strictEqual(tellTime(), 3, "Passed!");
+      done();
+    }, 3010);
+
+  }, 3010)
 });
 
 //The test below does not work in the intended way, meant to start timer for 3 seconds, pause for one second, run for 3 seconds and then return the current time
@@ -57,19 +59,19 @@ QUnit.test("when timer is run for 3 seconds, paused for 1 second and started aga
 
   reset();
 
-  startButton();
+  startButton(); // here we start the timer
 
-  setTimeout(function(){
+  setTimeout(function(){ // this setTimeout waits 3 seconds before firing its contents
 
-    stopButton();
+    stopButton(); //so after 3 seconds we stop the timer
 
-    setTimeout(function(){
+    setTimeout(function(){ // this setTimeout waits 1 second (whilst the timer is paused) before firing its contents
 
-      startButton();
+      startButton(); // so after 1 second we restart the timer
 
-      setTimeout(function() {
+      setTimeout(function() { //  this setTimeout waits another 3 seconds before firing its contents
 
-        assert.strictEqual(tellTime(), 6, "Passed!");
+        assert.strictEqual(tellTime(), 6, "Passed!"); // so after another 3 seconds (a total of 7 seconds from when the time was first started on like 62, and a totla of 6 seconds of the timer actuall running) we fire our assert.strictEqual to check what the current timer is at. 
         done();
 
       }, 3010);
