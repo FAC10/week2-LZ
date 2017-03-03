@@ -18,6 +18,33 @@ QUnit.test('clearSecondsAt count at 60 seconds', function(assert){
   assert.equal(clearSecondsAt, 60);
 })
 
+QUnit.test('checks that reset changes time from 40 to 0', function(assert){
+
+  time = 40;
+
+  reset();
+
+  assert.equal(time, 0);
+})
+
+QUnit.test('checks that secondsCounter increases time by 1 each time it is called', function(assert){
+  reset();
+
+  secondsCounter();
+
+  assert.equal(time, 1);
+})
+
+QUnit.test('checks that minutesCounter increases minutes by 1 each time it is called', function(assert){
+  reset();
+
+  minutesCounter();
+
+  assert.equal(minutes, 1);
+})
+
+
+
 //Integration-ish tests
 
 QUnit.test("tests that when 3 seconds has passed our clock registers 3 seconds", function( assert ) {
