@@ -15,6 +15,7 @@ function reset() {
   document.getElementById("seconds").innerHTML = '00';
   minutes = 0;
   document.getElementById("minutes").innerHTML = '00';
+
   isClicked = false;
 }
 
@@ -56,6 +57,7 @@ function secondsCounter() {
         htmlSeconds.innerHTML = time;
       }
     }
+
     console.log(time);
 
 }
@@ -74,6 +76,9 @@ function minutesCounter() {
   if (minutes === 20){
     reset();
   }
+
+
+
 
 
 }
